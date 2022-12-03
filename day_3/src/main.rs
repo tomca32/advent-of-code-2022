@@ -26,17 +26,17 @@ fn char_to_priority_test() {
 fn find_shared_character(strings: &[&str]) -> Option<char> {
     let mut chars = HashMap::new();
 
-    for (i, string) in strings.into_iter().enumerate() {
+    for (i, string) in strings.iter().enumerate() {
         if i == strings.len() -1 {
             for c in string.chars() {
-                if let Some(existing) = chars.get(&c) {
-                    if i - 1 == *existing {return Some(c)}
+                if let Some(&existing) = chars.get(&c) {
+                    if i - 1 == existing {return Some(c)}
                 }
             }
         } else {
             for c in string.chars() {
                 match chars.get(&c) {
-                    Some(existing) => if i == 0 || i - 1 == *existing {chars.insert(c, i);},
+                    Some(&existing) => if i == 0 || i - 1 == existing {chars.insert(c, i);},
                     None => if i == 0 {chars.insert(c, i);},
                 }
             }
