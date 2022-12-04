@@ -27,7 +27,7 @@ fn find_shared_character(strings: &[&str]) -> Option<char> {
     let mut chars = HashMap::new();
 
     for (i, string) in strings.iter().enumerate() {
-        if i == strings.len() -1 {
+        if i == strings.len() - 1 {
             for c in string.chars() {
                 if let Some(&existing) = chars.get(&c) {
                     if i - 1 == existing {return Some(c)}
